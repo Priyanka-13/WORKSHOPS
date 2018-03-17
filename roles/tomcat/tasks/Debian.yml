@@ -1,0 +1,16 @@
+---
+- name: copy Tomcat
+  copy: src=/opt/apache-tomcat-7.0.85.tar.gz dest=/home/apache-tomcat-7.0.85.tar.gz
+
+- name: Extract Tomcat archive
+  unarchive:
+   src: /home/apache-tomcat-7.0.85.tar.gz
+   dest: /usr/local/
+   remote_src: yes
+#    command: tar zxvf /opt/apache-tomcat-8.5.28.tar.gz -C /opt/ creates=/opt/apache-tomcat
+
+- name: tomcat restart redhat
+  command: nohup /usr/local/apache-tomcat-7.0.85/bin/startup.sh
+  become: true-
+  notify:
+  - tomcat restart debian

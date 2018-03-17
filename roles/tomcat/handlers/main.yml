@@ -1,0 +1,9 @@
+---
+# handlers file for tomcat
+- name: tomcat restart debian
+  service: name=tomcat7 state=restarted
+  become: true
+
+- name: tomcat restart redhat
+  command: nohup /home/vagrant/apache-tomcat-7.0.85/bin/startup.sh
+  become: true
